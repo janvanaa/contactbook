@@ -1,0 +1,28 @@
+{% extends '_layouts/base.html' %}
+{% block jumbotron %}
+{% if object.id %}
+<h3>Edit {{ object }}</h3>
+{% else %}
+<h3>New Company</h3>
+{% endif %}
+{% endblock %}
+{% block content %}
+<div class="row">
+<form action="{{ target }}" method="post">
+    {% csrf_token %}
+    <ul class="list-group">
+    <div class="col-md-6">
+        {% for field in form.visible_fields|slice:":6" %}
+        <li class="list-group-item">{{ field.label_tag }} {{ field }}</li>
+        {% endfor %}
+    </div>
+    <div class="col-md-6">
+        {% for field in form.visible_fields|slice:"6:" %}
+        <li class="list-group-item">{{ field.label_tag }} {{ field }}</li>
+        {% endfor %}
+        <li class="list-group-item"><input type="submit" value="OK" class="btn btn-success" /> <a href="{% url 'company-list' %}" class="btn btn-default">Back</a></li>
+    </div>
+    </ul>
+</form>
+</div>
+{% endblock %}

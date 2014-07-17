@@ -1,0 +1,8 @@
+{% extends '_layouts/base.html' %}
+{% block title %}Home{% endblock %}
+{% block jumbotron %}
+<h3>Hello there</h3>
+{% endblock %}
+{% block content %}
+<a href="{% url 'person-list' %}" class="btn btn-primary">Persons</a> <a href="{% url 'company-list' %}" class="btn btn-primary">Companies</a>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends '_layouts/base.html' %}
+
+{% block title %}List of Companies{% endblock %}
+{% block jumbotron %}
+    <h3>List of Companies</h3>
+{% endblock %}
+{% block content %}    
+    <div class="row">
+        <div class="col-sm-6">
+            <ul class="list-group">
+                {% for object in object_list %}
+                    <li class="list-group-item">
+                        <a href="{{ object.get_absolute_url }}">{{ object }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <a href="{% url 'home' %}" class="btn btn-default">Home</a> <a href="{% url 'company-new' %}" class="btn btn-success">Add new contact</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends '_layouts/base.html' %}
+{% load verbose_names %}
+{% block title %}{{ object }}{% endblock %}
+{% block jumbotron %}
+<h3>Details for: {{ object }}</h3>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        {% for name, value in object.get_fields|slice:":6" %}
+            <li class="list-group-item"><strong>{% get_verbose_field_name object name %}</strong>: {{ value|urlize }}</li>
+        {% endfor %}
+    </div>
+    <div class="col-md-6">
+        {% for name, value in object.get_fields|slice:"6:" %}
+            <li class="list-group-item"><strong>{% get_verbose_field_name object name %}</strong>: {{ value|urlize }}</li>
+        {% endfor %}
+            <li class="list-group-item"><a href="{% url 'company-edit' object.id %}" class="btn btn-info">Edit</a> <a href="{% url 'company-delete' object.id %}" class="btn btn-warning">Delete</a> <a href="{% url "company-list" %}" class="btn btn-default">Back</a></li>
+    </div>    
+</div>
+{% endblock %}
